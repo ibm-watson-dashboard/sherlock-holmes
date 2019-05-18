@@ -1,0 +1,17 @@
+.app-header {
+    height: 60px;
+    position: relative;
+    z-index: 10;
+}
+
+.app-login-menu {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float: right;
+}
+
+.link {
+    text-decoration: none;
+}
