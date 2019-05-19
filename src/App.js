@@ -22,6 +22,9 @@ import dataProviderFactory from './dataProvider';
 import fakeServerFactory from './fakeServer';
 
 const i18nProvider = locale => {
+    if (locale === 'pt-br') {
+        return import('./i18n/pt-br').then(messages => messages.default);
+    }
 
     // Always fallback on english
     return englishMessages;

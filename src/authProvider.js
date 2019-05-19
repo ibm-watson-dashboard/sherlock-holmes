@@ -1,15 +1,8 @@
-import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_CHECK, AUTH_ERROR } from 'react-admin';
+import { AUTH_LOGOUT, AUTH_CHECK, AUTH_ERROR } from 'react-admin';
 
 export const ACCESS_TOKEN = 'accessToken';
 
 export default (type, params) => {
-    if (type === AUTH_LOGIN) {
-        /*
-        const { accessToken } = params;
-        localStorage.setItem(ACCESS_TOKEN, accessToken);
-        return Promise.resolve();
-        */
-    }
     if (type === AUTH_LOGOUT) {
         localStorage.removeItem(ACCESS_TOKEN);
         return Promise.resolve();
@@ -18,7 +11,6 @@ export default (type, params) => {
         return Promise.resolve();
     }
     if (type === AUTH_CHECK) {
-        console.log('localStorage:', localStorage.getItem(ACCESS_TOKEN))
         return localStorage.getItem(ACCESS_TOKEN) ? Promise.resolve() : Promise.reject();
     }
     return Promise.reject('Unkown method');

@@ -3,8 +3,7 @@ import { GET_LIST, GET_MANY, Responsive, withDataProvider } from 'react-admin';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 
-import Welcome from './Welcome';
-import MonthlyRevenue from './MonthlyRevenue';
+import ApiCalls from './ApiCalls';
 import NbNewOrders from './NbNewOrders';
 import PendingOrders from './PendingOrders';
 import PendingReviews from './PendingReviews';
@@ -36,6 +35,7 @@ class Dashboard extends Component {
         this.fetchOrders();
         this.fetchReviews();
         this.fetchCustomers();
+        this.fetchCalls();
     }
 
     async fetchOrders() {
@@ -134,6 +134,28 @@ class Dashboard extends Component {
         });
     }
 
+    async fetchCalls() {
+        const { dataProvider } = this.props;
+        const aMonthAgo = new Date();
+        aMonthAgo.setDate(aMonthAgo.getDate() - 30);
+        const { data: apiCalls } = await dataProvider(
+            GET_LIST,
+            'calls',
+            {
+                filter: {
+                    has_ordered: true,
+                    first_seen_gte: aMonthAgo.toISOString(),
+                },
+                sort: { field: 'first_seen', order: 'DESC' },
+                pagination: { page: 1, perPage: 100 },
+            }
+        );
+        this.setState({
+            apiCalls,
+            nbApiCalls: apiCalls.reduce(nb => ++nb, 0),
+        });
+    }
+
     render() {
         const {
             nbNewCustomers,
@@ -151,11 +173,8 @@ class Dashboard extends Component {
                 xsmall={
                     <div>
                         <div style={styles.flexColumn}>
-                            <div style={{ marginBottom: '2em' }}>
-                                <Welcome />
-                            </div>
                             <div style={styles.flex}>
-                                <MonthlyRevenue value={revenue} />
+                                <ApiCalls value={revenue} />
                                 <NbNewOrders value={nbNewOrders} />
                             </div>
                             <div style={styles.singleCol}>
@@ -169,11 +188,8 @@ class Dashboard extends Component {
                 }
                 small={
                     <div style={styles.flexColumn}>
-                        <div style={styles.singleCol}>
-                            <Welcome />
-                        </div>
                         <div style={styles.flex}>
-                            <MonthlyRevenue value={revenue} />
+                            <ApiCalls value={revenue} />
                             <NbNewOrders value={nbNewOrders} />
                         </div>
                         <div style={styles.singleCol}>
@@ -188,11 +204,8 @@ class Dashboard extends Component {
                     <div style={styles.flex}>
                         <div style={styles.leftCol}>
                             <div style={styles.flex}>
-                                <MonthlyRevenue value={revenue} />
+                                <ApiCalls value={revenue} />
                                 <NbNewOrders value={nbNewOrders} />
-                            </div>
-                            <div style={styles.singleCol}>
-                                <Welcome />
                             </div>
                             <div style={styles.singleCol}>
                                 <PendingOrders

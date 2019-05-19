@@ -22,12 +22,12 @@ const styles = {
     },
 };
 
-const MonthlyRevenue = ({ value, translate, classes }) => (
+const ApiCalls = ({ value, translate, classes }) => (
     <div className={classes.main}>
         <CardIcon Icon={DollarIcon} bgColor="#31708f" />
         <Card className={classes.card}>
             <Typography className={classes.title} color="textSecondary">
-                {translate('pos.dashboard.monthly_revenue')}
+                {translate('pos.dashboard.api_calls')}
             </Typography>
             <Typography variant="headline" component="h2">
                 {value}
@@ -41,4 +41,4 @@ const enhance = compose(
     translate
 );
 
-export default enhance(MonthlyRevenue);
+export default enhance(ApiCalls);

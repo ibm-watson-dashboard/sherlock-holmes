@@ -55,10 +55,10 @@ const Configuration = ({
             <Button
                 variant="raised"
                 className={classes.button}
-                color={locale === 'fr' ? 'primary' : 'default'}
-                onClick={() => changeLocale('fr')}
+                color={locale === 'pt-br' ? 'primary' : 'default'}
+                onClick={() => changeLocale('pt-br')}
             >
-                fr
+                pt-br
             </Button>
         </CardContent>
     </Card>

@@ -1,19 +1,16 @@
-import englishMessages from 'ra-language-english';
-
 export default {
-    ...englishMessages,
     pos: {
-        title: 'Sherlock Holmes - An IBM Watson Assistant Dashboard',
-        search: 'Search',
-        configuration: 'Configuration',
-        language: 'Language',
+        title: 'Sherlock Holmes - Um Dashboard para o IBM Watson Assistant',
+        search: 'Busca',
+        configuration: 'Configurações',
+        language: 'Idioma',
         theme: {
-            name: 'Theme',
+            name: 'Tema',
             light: 'Light',
             dark: 'Dark',
         },
         dashboard: {
-            api_calls: 'Api Calls',
+            api_calls: 'Chamadas da API',
             new_orders: 'New Orders',
             pending_reviews: 'Pending Reviews',
             new_customers: 'New Customers',
@@ -129,8 +126,8 @@ export default {
                 product_id: 'Product',
                 date_gte: 'Posted since',
                 date_lte: 'Posted before',
-                date: 'Date',
-                comment: 'Comment',
+                date: 'Data',
+                comment: 'Comentário',
                 rating: 'Rating',
             },
             action: {
