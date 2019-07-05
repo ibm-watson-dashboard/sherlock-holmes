@@ -1,4 +1,3 @@
-import React from 'react';
 import { translate } from 'react-admin';
 import compose from 'recompose/compose';
 
